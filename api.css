@@ -1,0 +1,32 @@
+div.content {
+	position: relative;
+	width: 80%;
+	margin: auto;
+	/*Top, bottom: 100px; Left, right: 0px;*/
+	font-size: 1.1em;
+}
+
+div.codebox {
+    background-color: #F6F6F6;
+    width: 100%;
+    overflow: auto;    
+    padding: 10px;
+}
+
+code {
+	font-size: 1.05em;
+}
+
+#welcome {
+	padding: 100px 0px;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+.footer {
+	text-align: center;
+}
+
+hr {
+	width: 80%;
+}

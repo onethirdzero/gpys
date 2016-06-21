@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GPyS | Reference Doc</title>
+		<link rel="stylesheet" href="api.css">
+	</head>
+	<body>
+		<div class="content">
+			<h1>GPyS Reference Doc</h1>
+			<p>This is a collection of classes used by the GPyS module.
+
+			<h2>Coordinate</h2>
+			<div class="codebox">
+				<code>class Coordinate(longitude, latitude)</code>
+			</div>
+			<p>The <code>Coordinate</code> constructor accepts a <code>longitude</code> and a <code>latitude</code> in signed degrees format and returns a Coordinate object. Latitudes range from -90.0000 to 90.0000 and longitudes range from -180.0000 to 180.0000. The constructor throws an error if it is called with values outside of the accepted range.</p>
+
+			<h4>Methods</h4>
+
+			<div class="codebox">
+				<code>.distanceFrom(coordinate)</code>
+			</div>
+			<p>Accepts a <code>Coordinate</code> object and returns the distance from that coordinate in positive integer meters.</p>
+			<br>
+
+			<div class="codebox">
+				<code>.dmsFormatted()</code>
+			</div>
+			<p>Returns the longitude and latitude of the Coordinate object in degrees, minutes and seconds (DMS) format.</p>
+			<br>
+
+			<div class="codebox">
+				<code>.elevation()</code>
+			</div>
+			<p>Returns the elevation of the Coordinate object in meters.</p>			
+		</div>
+
+		<br>
+		<hr>
+		<br>
+
+		<div class="content">
+			<h2>GPXFile</h2>
+			<div class="codebox">
+				<code>class GPXFile(file)</code>
+			</div>
+			<p>The <code>GPXFile</code> constructor accepts a GPX file as its lone argument. If <code>file</code> is not a GPX file, the constructor will throw an error.</p>
+			
+			<h4>Methods</h4>
+
+			<div class="codebox">
+				<code>.distanceTravelled(time1, time2)</code>
+			</div>
+			<p>Returns the distance travelled along the track during a specified time interval. The input time interval is assumed to be in the same timezone of the original GPX file. The method accepts a string in the format <code>hh:mm:ss</code> where <code>time1</code> specifies the start of the interval and <code>time2</code> specifies the end of the interval.</p>
+			<br>
+
+			<div class="codebox">
+				<code>.totalTrackLength()</code>
+			</div>
+			<p>Returns the total length of the track recorded in the GPXFile object in positive integer meters.</p>
+			<br>
+
+			<div class="codebox">
+				<code>.totaltrkpts()</code>
+			</div>
+			<p>Returns the total number of track points in the GPX file.</p>
+			<br>
+
+			<div class="codebox">
+				<code>.trackStartTime()</code>
+			</div>
+			<p>Returns the timestamp at which the first track point was recorded in the format hh:mm:ss. The timestamp will be in the same timezone as original GPX file.</p>
+			<br>
+
+			<div class="codebox">
+				<code>.trackEndTime()</code>
+			</div>
+			<p>Returns the timestamp at which the last track point was recorded in the format hh:mm:ss. The timestamp will be in the same timezone as original GPX file.</p>
+			<br>
+
+			<div class="codebox">
+				<code>.trkptAtTime(time)</code>
+			</div>
+			<p>Returns the track point with timestamp <node>time</node> in the GPX file as a TrackPoint object. <code>time</code> must be in the format <code>hh:mm:ss</code> and is assumed to be in the same timezone as the original GPX file.</p>
+			<p>If <code>time</code> is in the recorded range but doesn't exactly match any of the timestamps, the method will return the track point with the timestamp closest to <code>time</code>. If <code>time</code> is outside the recorded range, the method will throw an error.</p>
+			<br>
+
+			<div class="codebox">
+				<code>.trkptNumber(n)</code>
+			</div>
+			<p>Returns the <code>n</code>-th track point in the GPX file as a TrackPoint object where <code>n</code> is a positive integer. If the <code>n</code>-th track point does not exist, the method will throw an error.</p>		
+		</div>
+
+		<br>
+		<hr>
+		<br>
+
+		<div class="content">
+			<h2>TrackPoint</h2>
+			<div class="codebox">
+				<code>class TrackPoint(longitude, latitude)</code>
+			</div>
+			<p>The <code>TrackPoint</code> constructor accepts a <code>longitude</code> and a <code>latitude</code> in signed degrees format and returns a TrackPoint object. Latitudes range from -90.0000 to 90.0000 and longitudes range from -180.0000 to 180.0000. The constructor throws an error if it is called with values outside of the accepted range.</p>
+
+			<h4>Methods</h4>
+
+			<div class="codebox">
+				<code>.distanceFrom(trkpt)</code>
+			</div>
+			<p>Accepts a <code>TrackPoint</code> object and returns the distance from that track point in positive integer meters.</p>
+			<br>
+
+			<div class="codebox">
+				<code>.dmsFormatted()</code>
+			</div>
+			<p>Returns the longitude and latitude of the TrackPoint object in degrees, minutes and seconds (DMS) format.</p>
+			<br>
+
+			<div class="codebox">
+				<code>.elevation()</code>
+			</div>
+			<p>Returns the elevation of the TrackPoint object in positive integer meters.</p>
+
+			<div class="codebox">
+				<code>.timestamp()</code>
+			</div>
+			<p>Returns the timestamp of the TrackPoint object in the format hh:mm:ss.</p>	
+
+		</div>
+		
+		<br>
+		<p class="footer"><a href="index.html">Index</a></p>
+
+	</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>GPyS | Tutorial</title>
+		<link rel="stylesheet" href="api.css">
+	</head>
+	<body>
+		<div class="content">
+			<h1>Tutorial</h1>
+			<p>GPyS acts as an interface to your GPX data. In this short tutorial, we'll be passing a GPX file to GPyS and performing basic GIS operations on its data.</p>
+
+			<h3>Set up</h3>
+
+			<p>First, we'll need to import GPyS into our project. We can do this the same way as with a regular Python module.</p>
+			<div class="codebox">
+				<code>import GPyS</code>
+			</div>
+
+			<p>Next, we'll need to instantiate a GPXFile object to contain the GPX file data.</p>
+			<p>Say that we have a file called <code>marathon.gpx</code>. We pass it to GPyS using the GPXFile constructor like so.</p>
+			<div class="codebox">
+				<code>myMarathon = GPXFile(marathon.gpx)</code>
+			</div>
+
+			<p>We can then treat <code>myMarathon</code> as a representation of <code>marathon.gpx</code>'s data. That is, we can call functions on it and expect it to return the appropriate values.</p>
+
+			<h3>Interfacing with our data</h3>
+
+			<p>Say that we want to know the total distance travelled during the marathon. We can call the class method <code>.totalTrackDistance</code> on <code>myMarathon</code>.
+			<div class="codebox">
+				<code>myMarathon.totalTrackDistance() <font color="#767676"># This returns 18372 meters!</font></code>
+			</div>
+
+			<p>How about the timestamp when we were halfway through the marathon?</p>
+			<div class="codebox">
+				<code>
+					n = myMarathon.totaltrkpts() / 2 <br>
+					median_trkpt = myMarathon.trkptNumber(n)
+				</code>
+			</div>
+			<p>We first extracted the median track point using <code>.totaltrkpts()</code> and some simple arithmetic and stored it in a variable called <code>n</code>. Then we used <code>n</code> as an argument to a class method called <code>.trkptNumber()</code>, which returns the <code>n</code>-th TrackPoint object in the <code>myMarathon</code>.</p>
+			<p>Finally, we call <code>.timestamp</code> on <code>median_trkpt</code>.
+			<div class="codebox">
+				<code>median_trkpt.timestamp() <font color="#767676"># Returns our desired timestamp!</font></code>
+			</div>
+			<p>And we're done!</p>
+
+			<p>For more comprehensive information on each class and its methods, refer to the <a href="reference.html">Reference Doc</a>.</p>
+
+			<br>
+			<p class="footer"><a href="index.html">Index</a></p>
+		</div>
+	</body>
+</html>
