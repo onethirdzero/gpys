@@ -13,8 +13,20 @@ div.codebox {
     padding: 10px;
 }
 
+div.methods {
+	margin-left: 50px;
+}
+
 code {
 	font-size: 1.05em;
+}
+
+code.text {
+	padding: 0px 4px;
+	border: solid;
+	border-width: 1px;
+	border-color: #F6F6F6;
+	color: green;
 }
 
 #welcome {
