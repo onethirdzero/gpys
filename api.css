@@ -1,6 +1,11 @@
 p, h1, h3, a {
 	font-family: Georgia, Utopia, Charter,serif;
-;
+}
+
+img {
+	height: 50px;
+	width: 50px;
+	/*float: right;*/
 }
 
 div.container {
@@ -62,7 +67,7 @@ code.text {
 #header a {
 	font-weight: bold;
 	font-size: 1.3em;
-	margin-left: 100px;
+	/*margin-left: 100px;*/
 	letter-spacing: -5px;
 	color: black;
 }
