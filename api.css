@@ -1,20 +1,44 @@
+p, h1, h3, a {
+	font-family: Georgia, Utopia, Charter,serif;
+;
+}
+
+div.container {
+	position: relative;
+}
+
+div.sidebar {
+	position: fixed;
+	width: 280px;
+	top: 0; bottom: 0; left: 0;
+	padding: 0 0 0 20px;
+}
+
 div.content {
 	position: relative;
-	width: 80%;
-	margin: auto;
-	/*Top, bottom: 100px; Left, right: 0px;*/
+	margin: 0 0 0 300px;
+}
+
+div.section {
+	position: relative;
+	width: 90%;
 	font-size: 1.1em;
 }
 
 div.codebox {
+	position: relative;
     background-color: #F6F6F6;
-    width: 100%;
     overflow: auto;    
     padding: 10px;
 }
 
 div.methods {
 	margin-left: 50px;
+}
+
+a {
+	text-decoration: none;
+	color: green;
 }
 
 code {
@@ -30,15 +54,15 @@ code.text {
 }
 
 #welcome {
-	padding: 100px 0px;
+	padding: 100px 80px;
 	text-align: center;
-	font-size: 1.5em;
+	font-size: 1.3em;
 }
 
-.footer {
-	text-align: center;
-}
-
-hr {
-	width: 80%;
+#header a {
+	font-weight: bold;
+	font-size: 1.3em;
+	margin-left: 100px;
+	letter-spacing: -5px;
+	color: black;
 }
