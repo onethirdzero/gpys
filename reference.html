@@ -14,10 +14,10 @@
 			<div class="codebox">
 				<code>class Coordinate(long, lat, elev)</code>
 			</div>
-			<p>The Coordinate object consists of a 2-element signed int array, named <code class="text">long-lat</code> containing the input longtitude and latitude and a signed integer named <code class="text">elev</code> (containing the elevation).</p>
+			<p>The Coordinate object consists of a 2-element signed int array named <code class="text">long-lat</code> and a signed integer named <code class="text">elev</code>. <code class="text">long-lat</code> contains the input longtitude and latitude. <code class="text">elev</code> contains the input elevation.</p>
 			
-			<p>The <code>Coordinate</code> constructor accepts a <code>long</code> and a <code>lat</code> in signed degrees format, as well as an optional <code>elev</code>, and returns a Coordinate object. Latitudes range from -90.0000 to 90.0000 and longitudes range from -180.0000 to 180.0000.</p>
-			<p> The constructor throws an error if it is called with values outside of the accepted range.</p>
+			<p>The Coordinate constructor accepts a <code class="text">long</code> and a <code class="text">lat</code> in signed degrees format, as well as an optional <code class="text">elev</code>, and returns a Coordinate object. Latitudes range from -90.0000 to 90.0000 and longitudes range from -180.0000 to 180.0000.</p>
+			<p> The constructor returns an error if it is called with values outside of the accepted range.</p>
 
 			<div class="methods">
 				<h4>Methods</h4>
@@ -25,22 +25,22 @@
 				<div class="codebox">
 					<code>.distanceFrom(coordinate)</code>
 				</div>
-				<p>Accepts a <code>Coordinate</code> object and returns the distance from that coordinate in positive integer meters.</p>
-				<p>Exception.</p>
+				<p>Accepts a Coordinate object and returns the distance from that coordinate in positive integer meters.</p>
+				<p>Returns an error if no argument is passed to the method.</p>
 				<br>
 
 				<div class="codebox">
 					<code>.dmsFormatted()</code>
 				</div>
 				<p>Returns the longitude and latitude of the Coordinate object in degrees, minutes and seconds (DMS) format.</p>
-				<p>Exception.</p>
+				<p>Returns an error if the object is null.</p>
 				<br>
 
 				<div class="codebox">
 					<code>.elevation()</code>
 				</div>
 				<p>Returns the elevation of the Coordinate object in meters.</p>
-				<p>Exception.</p>
+				<p>Returns an error if the Coordinate's <code class="text">elev</code> is not initialized.</p>
 			</div>
 		</div>
 
@@ -53,7 +53,7 @@
 			<div class="codebox">
 				<code>class GPXFile(file)</code>
 			</div>
-			<p>The <code>GPXFile</code> constructor accepts a GPX file as its lone argument. If <code>file</code> is not a GPX file, the constructor will throw an error.</p>
+			<p>The GPXFile constructor accepts a GPX file as its lone argument. If <code class="text">file</code> is not a GPX file, the constructor will return an error.</p>
 			
 			<div class="methods">
 				<h4>Methods</h4>
@@ -61,44 +61,50 @@
 				<div class="codebox">
 					<code>.distanceTravelled(time1, time2)</code>
 				</div>
-				<p>Returns the distance travelled along the track during a specified time interval. The input time interval is assumed to be in the same timezone of the original GPX file. The method accepts a string in the format <code>hh:mm:ss</code> where <code>time1</code> specifies the start of the interval and <code>time2</code> specifies the end of the interval.</p>
+				<p>Returns the distance travelled along the track during a specified time interval.</p>
+				<p>The method accepts a string in the format <code class="text">hh:mm:ss</code> where <code class="text">time1</code> specifies the start of the interval and <code class="text">time2</code> specifies the end of the interval. The input time interval is assumed to be in the same timezone of the original GPX file.</p>
+				<p>If <code class="text">time1</code> is not passed to the method, the distance travelled from the start of the track till <code class="text">time2</code> is returned. If <code class="text">time2</code> is not passed, the distance travelled from <code class="text">time2</code> till the end of the track is returned. If both arguments are missing, the method returns an error.</p>
 				<br>
 
 				<div class="codebox">
 					<code>.totalTrackLength()</code>
 				</div>
 				<p>Returns the total length of the track recorded in the GPXFile object in positive integer meters.</p>
+				<p>Returns an error if the GPXFile object does not contain a track.</p>
 				<br>
 
 				<div class="codebox">
 					<code>.totaltrkpts()</code>
 				</div>
 				<p>Returns the total number of track points in the GPX file.</p>
+				<p>Returns an error if the GPXFile object does not contain a track.</p>
 				<br>
 
 				<div class="codebox">
 					<code>.trackStartTime()</code>
 				</div>
-				<p>Returns the timestamp at which the first track point was recorded in the format hh:mm:ss. The timestamp will be in the same timezone as original GPX file.</p>
+				<p>Returns the timestamp at which the first track point was recorded in the format <code class="text">hh:mm:ss</code>. The timestamp will be in the same timezone as original GPX file.</p>
+				<p>Returns an error if the GPXFile object does not contain a track.</p>
 				<br>
 
 				<div class="codebox">
 					<code>.trackEndTime()</code>
 				</div>
-				<p>Returns the timestamp at which the last track point was recorded in the format hh:mm:ss. The timestamp will be in the same timezone as original GPX file.</p>
+				<p>Returns the timestamp at which the last track point was recorded in the format <code class="text">hh:mm:ss</code>. The timestamp will be in the same timezone as original GPX file.</p>
+				<p>Returns an error if the GPXFile object does not contain a track.</p>
 				<br>
 
 				<div class="codebox">
 					<code>.trkptAtTime(time)</code>
 				</div>
-				<p>Returns the track point with timestamp <node>time</node> in the GPX file as a TrackPoint object. <code>time</code> must be in the format <code>hh:mm:ss</code> and is assumed to be in the same timezone as the original GPX file.</p>
-				<p>If <code>time</code> is in the recorded range but doesn't exactly match any of the timestamps, the method will return the track point with the timestamp closest to <code>time</code>. If <code>time</code> is outside the recorded range, the method will throw an error.</p>
+				<p>Returns the track point in the GPX file with the timestamp <code class="text">time</code> as a TrackPoint object. <code class="text">time</code> must be a string in the format <code class="text">hh:mm:ss</code> and is assumed to be in the same timezone as the original GPX file.</p>
+				<p>If <code class="text">time</code> is in the recorded range but doesn't exactly match any of the timestamps, the method will return the track point with the timestamp closest to <code class="text">time</code>. If <code class="text">time</code> is outside the recorded range, the method will return an error.</p>
 				<br>
 
 				<div class="codebox">
 					<code>.trkptNumber(n)</code>
 				</div>
-				<p>Returns the <code>n</code>-th track point in the GPX file as a TrackPoint object where <code>n</code> is a positive integer. If the <code>n</code>-th track point does not exist, the method will throw an error.</p>
+				<p>Returns the <code class="text">n</code>-th track point in the GPX file as a TrackPoint object where <code class="text">n</code> is a positive integer. If the <code class="text">n</code>-th track point does not exist, the method will return an error.</p>
 			</div>		
 		</div>
 
@@ -109,9 +115,11 @@
 		<div class="content">
 			<h2>TrackPoint</h2>
 			<div class="codebox">
-				<code>class TrackPoint(longitude, latitude)</code>
+				<code>class TrackPoint(long, lat, elev)</code>
 			</div>
-			<p>The <code>TrackPoint</code> constructor accepts a <code>longitude</code> and a <code>latitude</code> in signed degrees format and returns a TrackPoint object. Latitudes range from -90.0000 to 90.0000 and longitudes range from -180.0000 to 180.0000. The constructor throws an error if it is called with values outside of the accepted range.</p>
+			<p>The TrackPoint object consists of a 2-element signed int array named <code class="text">long-lat</code> and a signed integer named <code class="text">elev</code>. <code class="text">long-lat</code> contains the input longtitude and latitude. <code class="text">elev</code> contains the input elevation.</p>
+			<p>The TrackPoint constructor accepts a <code class="text">long</code> and a <code class="text">lat</code> in signed degrees format, as well as an optional <code class="text">elev</code>, and returns a TrackPoint object. Latitudes range from -90.0000 to 90.0000 and longitudes range from -180.0000 to 180.0000.</p>
+			<p>The constructor returns an error if it is called with values outside of the accepted range.</p>
 
 			<div class="methods">
 				<h4>Methods</h4>
@@ -119,24 +127,29 @@
 				<div class="codebox">
 					<code>.distanceFrom(trkpt)</code>
 				</div>
-				<p>Accepts a <code>TrackPoint</code> object and returns the distance from that track point in positive integer meters.</p>
+				<p>Accepts a TrackPoint object and returns the distance from that track point in positive integer meters.</p>
+				<p>Returns an error if no argument is passed to the method.</p>
 				<br>
 
 				<div class="codebox">
 					<code>.dmsFormatted()</code>
 				</div>
 				<p>Returns the longitude and latitude of the TrackPoint object in degrees, minutes and seconds (DMS) format.</p>
+				<p>Returns an error if the object is null.</p>
 				<br>
 
 				<div class="codebox">
 					<code>.elevation()</code>
 				</div>
 				<p>Returns the elevation of the TrackPoint object in positive integer meters.</p>
+				<p>Returns an error if the Coordinate's <code class="text">elev</code> is not initialized.</p>
+				<br>
 
 				<div class="codebox">
 					<code>.timestamp()</code>
 				</div>
 				<p>Returns the timestamp of the TrackPoint object in the format hh:mm:ss.</p>
+				<p>Returns an error if the object is null.</p>
 			</div>
 		</div>
 		
