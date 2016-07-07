@@ -3,9 +3,8 @@ p, h1, h3, a {
 }
 
 img {
-	height: 50px;
-	width: 50px;
-	/*float: right;*/
+	height: 88px;
+	width: 216px;
 }
 
 div.container {
@@ -14,9 +13,9 @@ div.container {
 
 div.sidebar {
 	position: fixed;
-	width: 280px;
-	top: 0; bottom: 0; left: 0;
-	padding: 0 0 0 20px;
+	width: 230px;
+	top: 25px; bottom: 0; left: 0;
+	padding: 0 0 0 45px;
 }
 
 div.content {
@@ -64,10 +63,6 @@ code.text {
 	font-size: 1.3em;
 }
 
-#header a {
-	font-weight: bold;
-	font-size: 1.3em;
-	/*margin-left: 100px;*/
-	letter-spacing: -5px;
-	color: black;
+#logo {
+	position: absolute;
 }
