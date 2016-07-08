@@ -15,8 +15,29 @@
 					<li><a href="reference.html">Reference Doc</a></li>
 					<ul>
 						<li><a href="#coord">Coordinate</a></li>
+							<ul>
+								<li><a href="#coord-dist">distanceFrom()</a></li>
+								<li><a href="#coord-dms">dmsFormatted()</a></li>
+								<li><a href="#coord-elev">elevation()</a></li>
+							</ul>
 						<li><a href="#gpx">GPXFile</a></li>
+							<ul>
+								<li><a href="#gpx-dist">distanceTravelled()</a></li>
+								<li><a href="#gpx-totallen">totalTrackLength()</a></li>
+								<li><a href="#gpx-totaltrkpts">totaltrkpts()</a></li>
+								<li><a href="#gpx-trkstart">trackStartTime()</a></li>
+								<li><a href="#gpx-trkend">trackEndTime()</a></li>
+								<li><a href="#gpx-trkptat">trkptAtTime()</a></li>
+								<li><a href="#gpx-trkptnum">trkptNumber()</a></li>
+							</ul>
 						<li><a href="#trkpt">TrackPoint</a></li>
+							<ul>
+								<li><a href="#trkpt-dist">distanceFrom()</a></li>
+								<li><a href="#trkpt-dms">dmsFormatted()</a></li>
+								<li><a href="#trkpt-elev">elevation()</a></li>
+								<li><a href="#trkpt-timestamp">timestamp()</a></li>
+
+							</ul>
 					</ul>
 				</ul>
 			</div>
@@ -37,24 +58,27 @@
 					<p> The constructor returns an error if it is called with values outside of the accepted range.</p>
 
 					<div class="methods">
-						<h4>Methods</h4>
+						<h3>Methods</h3>
 
-						<div id="coord-dist" class="codebox">
-							<code>.distanceFrom(coordinate)</code>
+						<h4 id="coord-dist"><code>distanceFrom()</code></h4>
+						<div class="codebox">
+							<code>Coordinate.distanceFrom(coordinate)</code>
 						</div>
 						<p>Accepts a Coordinate object and returns the distance from that coordinate in positive integer meters.</p>
 						<p>Returns an error if no argument is passed to the method.</p>
 						<br>
 
-						<div id="coord-dms" class="codebox">
-							<code>.dmsFormatted()</code>
+						<h4 id="coord-dms"><code>dmsFormatted()</code></h4>
+						<div class="codebox">
+							<code>Coordinate.dmsFormatted()</code>
 						</div>
 						<p>Returns the longitude and latitude of the Coordinate object in degrees, minutes and seconds (DMS) format.</p>
 						<p>Returns an error if the object is null.</p>
 						<br>
 
-						<div id="coord-elev" class="codebox">
-							<code>.elevation()</code>
+						<h4 id="coord-elev"><code>elevation()</code></h4>
+						<div class="codebox">
+							<code>Coordinate.elevation()</code>
 						</div>
 						<p>Returns the elevation of the Coordinate object in meters.</p>
 						<p>Returns an error if the Coordinate's <code class="text">elev</code> is not initialized.</p>
@@ -71,53 +95,60 @@
 					<p>The GPXFile constructor accepts a GPX file as its lone argument. If <code class="text">file</code> is not a GPX file, the constructor will return an error.</p>
 					
 					<div class="methods">
-						<h4>Methods</h4>
+						<h3>Methods</h3>
 
-						<div id="gpx-dist" class="codebox">
-							<code>.distanceTravelled(time1, time2)</code>
+						<h4 id="gpx-dist"><code>distanceTravelled()</code></h4>
+						<div class="codebox">
+							<code>GPXFile.distanceTravelled(time1, time2)</code>
 						</div>
 						<p>Returns the distance travelled along the track during a specified time interval.</p>
 						<p>The method accepts two strings in the format <code class="text">hh:mm:ss</code> where <code class="text">time1</code> specifies the start of the interval and <code class="text">time2</code> specifies the end of the interval. The input time interval is assumed to be in the same timezone of the original GPX file.</p>
 						<p>If <code class="text">time1</code> is not passed to the method, the distance travelled from the start of the track till <code class="text">time2</code> is returned. If <code class="text">time2</code> is absent, the distance travelled from <code class="text">time2</code> till the end of the track is returned. If both arguments are missing, the method returns an error.</p>
 						<br>
 
-						<div id="gpx-totallen" class="codebox">
-							<code>.totalTrackLength()</code>
+						<h4 id="gpx-totallen"><code>totalTrackLength()</code></h4>
+						<div class="codebox">
+							<code>GPXFile.totalTrackLength()</code>
 						</div>
 						<p>Returns the total length of the track recorded in the GPXFile object in positive integer meters.</p>
 						<p>Returns an error if the GPXFile object does not contain a track.</p>
 						<br>
 
-						<div id="gpx-totaltrkpts" class="codebox">
-							<code>.totaltrkpts()</code>
+						<h4 id="gpx-totaltrkpts"><code>totaltrkpts()</code></h4>
+						<div class="codebox">
+							<code>GPXFile.totaltrkpts()</code>
 						</div>
 						<p>Returns an integer of the total number of track points in the GPX file.</p>
 						<p>Returns an error if the GPXFile object does not contain a track.</p>
 						<br>
 
-						<div id="gpx-trkstart" class="codebox">
-							<code>.trackStartTime()</code>
+						<h4 id="gpx-trkstart"><code>trackStartTime()</code></h4>
+						<div class="codebox">
+							<code>GPXFile.trackStartTime()</code>
 						</div>
 						<p>Returns a string of the timestamp at which the first track point was recorded in the format <code class="text">hh:mm:ss</code>. The timestamp will be in the same timezone as original GPX file.</p>
 						<p>Returns an error if the GPXFile object does not contain a track.</p>
 						<br>
 
-						<div id="gpx-trkend" class="codebox">
-							<code>.trackEndTime()</code>
+						<h4 id="gpx-trkend"><code>trackEndTime()</code></h4>
+						<div class="codebox">
+							<code>GPXFile.trackEndTime()</code>
 						</div>
 						<p>Returns a string of the timestamp at which the last track point was recorded in the format <code class="text">hh:mm:ss</code>. The timestamp will be in the same timezone as original GPX file.</p>
 						<p>Returns an error if the GPXFile object does not contain a track.</p>
 						<br>
 
-						<div id="gpx-trkptat" class="codebox">
-							<code>.trkptAtTime(time)</code>
+						<h4 id="gpx-trkptat"><code>trkptAtTime()</code></h4>
+						<div class="codebox">
+							<code>GPXFile.trkptAtTime(time)</code>
 						</div>
 						<p>Returns the track point in the GPX file with the timestamp <code class="text">time</code> as a TrackPoint object. <code class="text">time</code> must be a string in the format <code class="text">hh:mm:ss</code> and is assumed to be in the same timezone as the original GPX file.</p>
 						<p>If <code class="text">time</code> is in the recorded range but doesn't exactly match any of the timestamps, the method will return the track point with the timestamp closest to <code class="text">time</code>. If <code class="text">time</code> is outside the recorded range, the method will return an error.</p>
 						<br>
 
-						<div id="gpx-trkptnum" class="codebox">
-							<code>.trkptNumber(n)</code>
+						<h4 id="gpx-trkptnum"><code>trkptNumber()</code></h4>
+						<div class="codebox">
+							<code>GPXFile.trkptNumber(n)</code>
 						</div>
 						<p>Returns the <code class="text">n</code>-th track point in the GPX file as a TrackPoint object where <code class="text">n</code> is a positive integer. If the <code class="text">n</code>-th track point does not exist, the method will return an error.</p>
 					</div>		
@@ -135,31 +166,35 @@
 					<p>The constructor returns an error if it is called with values outside of the accepted range.</p>
 
 					<div class="methods">
-						<h4>Methods</h4>
+						<h3>Methods</h3>
 
-						<div id="trkpt-dist" class="codebox">
-							<code>.distanceFrom(trkpt)</code>
+						<h4 id="trkpt-dist"><code>distanceFrom()</code></h4>
+						<div class="codebox">
+							<code>TrackPoint.distanceFrom(trkpt)</code>
 						</div>
 						<p>Accepts a TrackPoint object and returns the distance from that track point in positive integer meters.</p>
 						<p>Returns an error if no argument is passed to the method.</p>
 						<br>
 
-						<div id="trkpt-dms" class="codebox">
-							<code>.dmsFormatted()</code>
+						<h4 id="trkpt-dms"><code>dmsFormatted()</code></h4>
+						<div class="codebox">
+							<code>TrackPoint.dmsFormatted()</code>
 						</div>
 						<p>Returns a string of the longitude and latitude of the TrackPoint object in degrees, minutes and seconds (DMS) format.</p>
 						<p>Returns an error if the object is null.</p>
 						<br>
 
-						<div id="trkpt-elev" class="codebox">
-							<code>.elevation()</code>
+						<h4 id="trkpt-elev"><code>elevation()</code></h4>
+						<div class="codebox">
+							<code>TrackPoint.elevation()</code>
 						</div>
 						<p>Returns the elevation of the TrackPoint object in positive integer meters.</p>
 						<p>Returns an error if the Coordinate's <code class="text">elev</code> is not initialized.</p>
 						<br>
 
-						<div id="trkpt-timestamp" class="codebox">
-							<code>.timestamp()</code>
+						<h4 id="trkpt-timestamp"><code>timestamp()</code></h4>
+						<div class="codebox">
+							<code>TrackPoint.timestamp()</code>
 						</div>
 						<p>Returns a string of the timestamp of the TrackPoint object in the format <code class="text">hh:mm:ss</code>.</p>
 						<p>Returns an error if the object is null.</p>
