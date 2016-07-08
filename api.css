@@ -14,7 +14,7 @@ div.container {
 div.sidebar {
 	position: fixed;
 	width: 230px;
-	top: 25px; bottom: 0; left: 0;
+	top: 20px; bottom: 0; left: 0;
 	padding: 0 0 0 45px;
 }
 
@@ -58,7 +58,7 @@ code.text {
 }
 
 #welcome {
-	padding: 100px 80px;
+	padding: 150px 80px;
 	text-align: center;
 	font-size: 1.3em;
 }

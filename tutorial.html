@@ -23,41 +23,55 @@
 
 					<h3>Set up</h3>
 
-					<p>First, we'll need to import GPyS into our project. We can do this the same way as with a regular Python module.</p>
-					<div class="codebox">
-						<code>import GPyS</code>
-					</div>
+					<div class="methods">
+						<p>First, we'll need to import GPyS into our project.</p>
+						<div class="codebox">
+							<code>import GPyS</code>
+						</div>
 
-					<p>Next, we'll need to instantiate a GPXFile object to contain the GPX file data.</p>
-					<p>Say that we have a file called <code class="text">marathon.gpx</code>. We pass it to GPyS using the GPXFile constructor like so.</p>
-					<div class="codebox">
-						<code>myMarathon = GPXFile(marathon.gpx)</code>
-					</div>
+						<p>We will primarily interact with our GPS data via the <a href="reference.html#gpx">GPXFile object</a>.</p>
+						<p>Say that we have a file called <code class="text">marathon.gpx</code>. All we need to do is pass it to the GPXFile constructor.</p>
+						<div class="codebox">
+							<code>myMarathon = GPXFile(marathon.gpx)</code>
+						</div>
 
-					<p>We can then treat <code class="text">myMarathon</code> as a representation of <code class="text">marathon.gpx</code>'s data. That is, we can call functions on it and expect it to return the appropriate values.</p>
+						<p>We can then call functions on <code class="text">myMarathon</code> and it will return the appropriate values.</p>
+					</div>
 
 					<h3>Interfacing with our data</h3>
 
-					<p>Say that we want to know the total distance travelled during the marathon. We can call the class method <code class="text">.totalTrackDistance</code> on <code class="text">myMarathon</code>.
-					<div class="codebox">
-						<code>myMarathon.totalTrackDistance() <font color="#767676"># This returns 18372 meters!</font></code>
-					</div>
+					<div class="methods">
+						<p>Say that we want to know the total distance travelled during the marathon. There is a handy class method called <a href="reference.html#gpx-totallen"><code class="text">.totalTrackLength</code></a> that tells us just that.</p>
+						<div class="codebox">
+							<code>myMarathon.totalTrackLength() <font color="#767676"># This returns 42197 meters!</font></code>
+						</div>
 
-					<p>How about the timestamp when we were halfway through the marathon?</p>
-					<div class="codebox">
-						<code>
-							n = myMarathon.totaltrkpts() / 2 <br>
-							median_trkpt = myMarathon.trkptNumber(n)
-						</code>
-					</div>
-					<p>We first extracted the median track point using <code class="text">.totaltrkpts()</code> and some simple arithmetic and stored it in a variable called <code class="text">n</code>. Then we used <code class="text">n</code> as an argument to a class method called <code class="text">.trkptNumber()</code>, which returns the <code class="text">n</code>-th TrackPoint object in the <code class="text">myMarathon</code>.</p>
-					<p>Finally, we call <code class="text">.timestamp</code> on <code class="text">median_trkpt</code>.
-					<div class="codebox">
-						<code>median_trkpt.timestamp() <font color="#767676"># Returns our desired timestamp!</font></code>
+						<p>How about the timestamp when we were halfway through the marathon?</p>
+						<div class="codebox">
+							<code>
+								n = myMarathon.totaltrkpts() / 2 <br>
+								median_trkpt = myMarathon.trkptNumber(n) <br>
+								median_trkpt.timestamp() <font color="#767676"># Returns our desired timestamp!</font>
+							</code>
+						</div>
+						<p>In fact, those last two lines could be condensed into a single line like so.</p>
+						<div class="codebox">
+							<code>median_trkpt_time = myMarathon.trkptNumber(n).timestamp() <font color="#767676"># This works fine too.</font></code>
+						</div>
+						<p>Imagine that <a href="http://konbiniya.com/info/company.html#map">Konbiniya</a> was one of the rest stations on the track and we wanted to know how far that was from the halfway point.</p>
+						<p>We pull the coordinates from a quick Google search and add it as a <a href="reference.html#trkpt">TrackPoint object</a>.</p>
+						<div class="codebox">
+							<code>
+								rest_station = TrackPoint(-123.1279, 49.2864) <br>
+								median_trkpt.distanceFrom(rest_station) <font color="#767676"># Returns 322 meters!</font>
+							</code>
+						</div>
+						<p>With this new TrackPoint, <a href="reference.html#trkpt-dist"><code class="text">.distanceFrom()</code></a> returns the distance along the track from that rest station to our halfway point.</p>
+
 					</div>
 					<p>And we're done!</p>
 
-					<p>For more comprehensive information on each class and its methods, refer to the <a href="reference.html">Reference Doc</a>.</p>
+					<p>For more comprehensive information on each class and its methods, check out the <a href="reference.html">Reference Doc</a>.</p>
 				</div>
 
 				<br>
